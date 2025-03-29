@@ -158,3 +158,14 @@ const nav = document.querySelector('nav ul');
 document.querySelector('.logo').addEventListener('click', () => {
   nav.classList.toggle('active');
 });
+const API_URL = "https://ecommerce-ml-api-2.onrender.com/";
+
+async function getChatbotResponse(message) {
+    const response = await fetch(`${API_URL}/predict_chatbot`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+    });
+    const data = await response.json();
+    console.log(data.response);
+}
