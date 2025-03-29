@@ -1,0 +1,101 @@
+Product_ID,Name,Category,Price,Rating,Reviews,Stock_Availability
+P1000,Doll,Fashion,80.17,2,"Value for money, satisfied with the purchase.",Out of Stock
+P1001,Smartphone,Electronics,162.39,3.4,"Quality is okay, could be better.",Out of Stock
+P1002,T-Shirt,Fashion,184.34,4.5,"Value for money, satisfied with the purchase.",Available
+P1003,Board Game,Fashion,308.1,4.1,"Not as described, a bit disappointed.",Available
+P1004,Laptop,Home Appliances,479.9,2.6,"Value for money, satisfied with the purchase.",Available
+P1005,Blender,Fashion,266.93,3.1,Excellent! Will buy again.,Available
+P1006,Novel,Toys,486.49,2.9,Excellent! Will buy again.,Available
+P1007,Novel,Fashion,237.82,2.5,"Value for money, satisfied with the purchase.",Out of Stock
+P1008,Blender,Electronics,460.93,1,"Not as described, a bit disappointed.",Available
+P1009,Novel,Home Appliances,233.33,3.2,"Quality is okay, could be better.",Out of Stock
+P1010,Doll,Toys,73.21,4.7,"Not as described, a bit disappointed.",Available
+P1011,Laptop,Fashion,404.53,3.1,"Not as described, a bit disappointed.",Out of Stock
+P1012,Smartphone,Home Appliances,79.76,1.4,Great product! Highly recommend.,Available
+P1013,Novel,Fashion,137.38,2.8,"Value for money, satisfied with the purchase.",Out of Stock
+P1014,Board Game,Toys,25.34,3.8,Great product! Highly recommend.,Out of Stock
+P1015,Smartphone,Electronics,376.98,2.5,Great product! Highly recommend.,Available
+P1016,Blender,Toys,77.36,2.7,Excellent! Will buy again.,Available
+P1017,Board Game,Toys,41.83,4.8,Great product! Highly recommend.,Out of Stock
+P1018,Refrigerator,Toys,473,1.5,"Not as described, a bit disappointed.",Out of Stock
+P1019,T-Shirt,Electronics,113.24,3,Great product! Highly recommend.,Available
+P1020,Refrigerator,Fashion,331.31,3.5,"Not as described, a bit disappointed.",Available
+P1021,Novel,Electronics,346.29,4.4,Excellent! Will buy again.,Available
+P1022,Refrigerator,Books,375.59,1.8,"Value for money, satisfied with the purchase.",Available
+P1023,Laptop,Toys,367.07,4.7,"Not as described, a bit disappointed.",Out of Stock
+P1024,Blender,Electronics,399.89,4.5,"Value for money, satisfied with the purchase.",Out of Stock
+P1025,Doll,Home Appliances,151.73,4.5,Excellent! Will buy again.,Out of Stock
+P1026,Refrigerator,Books,314.52,3,Great product! Highly recommend.,Out of Stock
+P1027,Shoes,Books,459.69,1.9,Great product! Highly recommend.,Available
+P1028,Novel,Toys,442.35,4.3,"Not as described, a bit disappointed.",Available
+P1029,Board Game,Electronics,396.83,1.7,"Quality is okay, could be better.",Available
+P1030,Refrigerator,Home Appliances,450.34,4.5,"Quality is okay, could be better.",Out of Stock
+P1031,Headphones,Books,129.17,4.5,Great product! Highly recommend.,Available
+P1032,T-Shirt,Electronics,469.64,1.2,"Quality is okay, could be better.",Available
+P1033,Doll,Fashion,220.44,2.1,Excellent! Will buy again.,Out of Stock
+P1034,Novel,Books,78.69,2.4,"Quality is okay, could be better.",Out of Stock
+P1035,T-Shirt,Fashion,353.92,1.8,Excellent! Will buy again.,Out of Stock
+P1036,Smartphone,Home Appliances,222.29,3.8,"Quality is okay, could be better.",Out of Stock
+P1037,Smartphone,Home Appliances,445.58,1.6,"Value for money, satisfied with the purchase.",Available
+P1038,Refrigerator,Books,286.33,4.7,"Value for money, satisfied with the purchase.",Out of Stock
+P1039,Laptop,Electronics,394.08,3.8,"Not as described, a bit disappointed.",Available
+P1040,Novel,Electronics,405.36,4.8,"Not as described, a bit disappointed.",Available
+P1041,Board Game,Electronics,412.04,1.7,Excellent! Will buy again.,Out of Stock
+P1042,Smartphone,Fashion,38.68,4.9,"Not as described, a bit disappointed.",Out of Stock
+P1043,Board Game,Books,331.17,4.9,"Quality is okay, could be better.",Out of Stock
+P1044,Shoes,Toys,117.72,3.3,"Quality is okay, could be better.",Out of Stock
+P1045,T-Shirt,Toys,275.64,1,Great product! Highly recommend.,Available
+P1046,Blender,Toys,129.99,3.3,Great product! Highly recommend.,Out of Stock
+P1047,Novel,Books,330.35,1.4,"Not as described, a bit disappointed.",Available
+P1048,Doll,Electronics,91.06,4.9,"Quality is okay, could be better.",Out of Stock
+P1049,Doll,Home Appliances,280.53,1.6,Excellent! Will buy again.,Out of Stock
+P1050,T-Shirt,Electronics,137.52,2,"Quality is okay, could be better.",Available
+P1051,Laptop,Electronics,286.47,3.6,"Not as described, a bit disappointed.",Out of Stock
+P1052,Laptop,Electronics,225.87,4.5,"Not as described, a bit disappointed.",Available
+P1053,Novel,Home Appliances,487.31,1.4,"Not as described, a bit disappointed.",Available
+P1054,Smartphone,Toys,282.15,4.2,"Not as described, a bit disappointed.",Out of Stock
+P1055,T-Shirt,Home Appliances,98.3,5,Excellent! Will buy again.,Available
+P1056,Doll,Fashion,259.42,4.2,"Not as described, a bit disappointed.",Out of Stock
+P1057,Smartphone,Books,195.79,4.5,"Value for money, satisfied with the purchase.",Available
+P1058,Smartphone,Toys,169.7,2.8,"Not as described, a bit disappointed.",Out of Stock
+P1059,Headphones,Toys,153.11,3,"Value for money, satisfied with the purchase.",Available
+P1060,Doll,Fashion,94.46,2.2,"Quality is okay, could be better.",Out of Stock
+P1061,Board Game,Books,189.88,3.4,"Not as described, a bit disappointed.",Available
+P1062,Smartphone,Toys,277.32,3,"Value for money, satisfied with the purchase.",Available
+P1063,Novel,Toys,27.6,1.6,Excellent! Will buy again.,Out of Stock
+P1064,Doll,Toys,31.82,3,"Not as described, a bit disappointed.",Out of Stock
+P1065,Blender,Home Appliances,392.39,2.7,"Quality is okay, could be better.",Available
+P1066,Refrigerator,Home Appliances,185.28,3.7,Excellent! Will buy again.,Out of Stock
+P1067,T-Shirt,Fashion,152.31,2.6,Great product! Highly recommend.,Out of Stock
+P1068,Refrigerator,Books,365.74,2,Great product! Highly recommend.,Out of Stock
+P1069,Board Game,Fashion,199.54,2.5,Excellent! Will buy again.,Available
+P1070,Refrigerator,Toys,152.97,1.2,"Value for money, satisfied with the purchase.",Out of Stock
+P1071,Headphones,Fashion,59.18,3,Great product! Highly recommend.,Out of Stock
+P1072,Refrigerator,Electronics,252.56,2.1,"Not as described, a bit disappointed.",Out of Stock
+P1073,T-Shirt,Home Appliances,308.35,1.1,"Value for money, satisfied with the purchase.",Available
+P1074,Novel,Toys,303.18,1.4,"Quality is okay, could be better.",Out of Stock
+P1075,Doll,Books,466.17,1.3,Excellent! Will buy again.,Out of Stock
+P1076,Blender,Toys,419.87,3.6,"Not as described, a bit disappointed.",Available
+P1077,Headphones,Books,72.72,1.4,"Not as described, a bit disappointed.",Available
+P1078,Board Game,Home Appliances,485.75,4.6,"Value for money, satisfied with the purchase.",Out of Stock
+P1079,Laptop,Toys,364.66,1.2,"Not as described, a bit disappointed.",Available
+P1080,Laptop,Electronics,175.77,1,Great product! Highly recommend.,Out of Stock
+P1081,Smartphone,Electronics,476.56,2.6,Excellent! Will buy again.,Out of Stock
+P1082,Laptop,Electronics,131.98,4.9,Great product! Highly recommend.,Out of Stock
+P1083,Smartphone,Home Appliances,411.66,3.1,"Value for money, satisfied with the purchase.",Available
+P1084,Blender,Electronics,201.98,4.5,"Value for money, satisfied with the purchase.",Out of Stock
+P1085,Refrigerator,Home Appliances,341.14,4,Excellent! Will buy again.,Available
+P1086,Blender,Fashion,117.03,1.2,"Quality is okay, could be better.",Available
+P1087,Board Game,Home Appliances,246.67,4,"Value for money, satisfied with the purchase.",Out of Stock
+P1088,Novel,Electronics,282.7,2.5,"Value for money, satisfied with the purchase.",Out of Stock
+P1089,Refrigerator,Home Appliances,401.17,3.6,Excellent! Will buy again.,Out of Stock
+P1090,Novel,Books,303.45,3.5,Excellent! Will buy again.,Available
+P1091,T-Shirt,Electronics,432.46,1.3,"Not as described, a bit disappointed.",Out of Stock
+P1092,Shoes,Toys,334.92,4,Excellent! Will buy again.,Out of Stock
+P1093,Novel,Toys,91.5,3.8,Excellent! Will buy again.,Available
+P1094,Blender,Fashion,109.39,4.7,"Quality is okay, could be better.",Out of Stock
+P1095,Doll,Books,145.22,2.8,Excellent! Will buy again.,Available
+P1096,Refrigerator,Toys,389.04,3,"Quality is okay, could be better.",Out of Stock
+P1097,Headphones,Toys,54.4,3.4,"Quality is okay, could be better.",Available
+P1098,T-Shirt,Fashion,256.74,4.8,Great product! Highly recommend.,Out of Stock
+P1099,Refrigerator,Toys,487.24,1.5,"Value for money, satisfied with the purchase.",Out of Stock
