@@ -30,5 +30,25 @@ def recommend():
     response = recommend_model.predict([data["user_id"]])
     return jsonify({"recommendations": response.tolist()})
 
+    # Chatbot API
+@app.route('/chatbot', methods=['POST'])
+def chatbot():
+    user_message = request.json.get('message')
+    responses = ["Hello!", "How can I help you?", "Tell me more."]
+    return jsonify({"response": random.choice(responses)})
+
+# Recommendation API
+@app.route('/recommend', methods=['GET'])
+def recommend():
+    products = ["Product A", "Product B", "Product C", "Product D"]
+    return jsonify({"recommendations": random.sample(products, 2)})
+
+# Fraud Detection API
+@app.route('/fraud-check', methods=['POST'])
+def fraud_check():
+    transaction = request.json
+    is_fraud = random.choice([True, False])
+    return jsonify({"fraud": is_fraud})
+
 if __name__ == "__main__":
     app.run(debug=True)

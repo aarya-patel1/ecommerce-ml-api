@@ -518,3 +518,133 @@ footer {
     text-align: center;
   }
 }
+.chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-window {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-window.active {
+  display: block;
+}
+
+.chatbot-header {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.chatbot-body {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.chatbot-footer {
+  display: flex;
+  padding: 10px;
+}
+
+.chatbot-footer input {
+  flex: 1;
+  padding: 5px;
+}
+
+.chatbot-footer button {
+  padding: 5px;
+}
+
+/* Center content */
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Button styles */
+button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #e74c3c;
+}
+
+/* Fraud detection section */
+#fraud-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Recommendations section styles */
+.recommendations {
+  padding: 4rem 2rem;
+  background-color: #f0f0f0; /* Temporary background color for visibility */
+}
+
+.recommendations h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recommendations .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+/* Fraud detection section */
+#fraud-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.fraud-detection {
+  display: block; /* Ensures it appears below */
+  text-align: center;
+  margin-top: 20px; /* Adds space between sections */
+}
+.container {
+  display: flex;
+  flex-direction: column; /* Ensures sections stack vertically */
+  align-items: center; /* Centers content */
+  width: 100%;
+}
+
+/* Ensure each section takes full width */
+.fraud-detection {
+  width: 100%; 
+  text-align: center; /* Centers content */
+  margin-bottom: 40px; /* Adds spacing */
+}

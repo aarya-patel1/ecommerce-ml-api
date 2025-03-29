@@ -135,3 +135,50 @@ async function getChatbotResponse(message) {
     return "Sorry, I couldn't process your request.";
   }
 }
+function toggleChatbot() {
+  document.getElementById("chatbot").classList.toggle("active");
+}
+
+function sendMessage() {
+  let input = document.getElementById("chatbot-input");
+  let message = input.value.trim();
+  if (message) {
+      let messagesContainer = document.getElementById("chatbot-messages");
+      messagesContainer.innerHTML += `<div>User: ${message}</div>`;
+      input.value = "";
+
+      fetch("/chatbot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: message })
+      })
+      .then(response => response.json())
+      .then(data => {
+          messagesContainer.innerHTML += `<div>Bot: ${data.response}</div>`;
+      });
+  }
+}
+
+function fetchRecommendations() {
+  fetch("/recommend")
+  .then(response => response.json())
+  .then(data => {
+      let recommendationsDiv = document.getElementById("recommendations");
+      recommendationsDiv.innerHTML = `<h3>Recommended:</h3><ul>${data.recommendations.map(item => `<li>${item}</li>`).join('')}</ul>`;
+  });
+}
+function checkFraud() {
+  let transactionDetails = document.getElementById("transaction-details").value;
+
+  fetch("/fraud-check", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ transaction: transactionDetails })
+  })
+  .then(response => response.json())
+  .then(data => {
+      document.getElementById("fraud-result").innerText = data.fraud 
+          ? "🚨 Fraud detected!" 
+          : "✅ Transaction is safe.";
+  });
+}
