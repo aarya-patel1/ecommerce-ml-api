@@ -4,16 +4,45 @@ window.addEventListener('scroll', function() {
   header.classList.toggle('sticky', window.scrollY > 0);
 });
 
+
+
 // Cart functionality
 const cartContainer = document.querySelector('.cart-container');
 const cartCount = document.querySelector('.cart-count');
 let cartItems = 0;
 
+
 cartContainer.addEventListener('click', () => {
   cartItems++;
   cartCount.textContent = cartItems;
 });
+document.getElementById("join-us-btn").addEventListener("click", function() {
+  document.getElementById("auth-modal").style.display = "flex";
+  document.getElementById("modal-title").textContent = "Login";
+  document.getElementById("toggle-auth").innerHTML = "Don't have an account? <a href='#' id='show-signup'>Sign Up</a>";
+});
 
+document.getElementById("close-modal").addEventListener("click", function() {
+  document.getElementById("auth-modal").style.display = "none";
+});
+
+document.addEventListener("click", function(event) {
+  if (event.target.id === "auth-modal") {
+      document.getElementById("auth-modal").style.display = "none";
+  }
+});
+
+document.addEventListener("click", function(event) {
+  if (event.target.id === "show-signup") {
+      event.preventDefault();
+      document.getElementById("modal-title").textContent = "Sign Up";
+      document.getElementById("toggle-auth").innerHTML = "Already have an account? <a href='#' id='show-login'>Log in</a>";
+  } else if (event.target.id === "show-login") {
+      event.preventDefault();
+      document.getElementById("modal-title").textContent = "Login";
+      document.getElementById("toggle-auth").innerHTML = "Don't have an account? <a href='#' id='show-signup'>Sign Up</a>";
+  }
+});
 // "See More" button functionality
 const seeMoreBtn = document.querySelector('.see-more-btn');
 const productGrid = document.querySelector('.product-grid');
@@ -114,50 +143,61 @@ document.querySelector('.logo').addEventListener('click', () => {
   nav.classList.toggle('active');
 });
 
-// Chatbot API Integration
-const API_URL = "https://ecommerce-ml-api-2.onrender.com";
-
+const API_URL = "https://ecommerce-ml-api-2.onrender.com"; // Make sure this is correct
 async function getChatbotResponse(message) {
   try {
-    const response = await fetch(`${API_URL}/predict_chatbot`, {
+    console.log("Sending message:", message);
+    
+    const response = await fetch(`${API_BASE_URL}/predict_chatbot`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message: message })
     });
 
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("API Error:", errorData);
+      return errorData.response || "Our chatbot service is currently unavailable. Please try again later.";
+    }
 
     const data = await response.json();
-    console.log("Chatbot Response:", data.response);
+    console.log("Received response:", data);
     return data.response;
+    
   } catch (error) {
-    console.error("Chatbot API Error:", error);
-    return "Sorry, I couldn't process your request.";
+    console.error("Network Error:", error);
+    return "We're having trouble connecting to the chatbot. Please check your connection and try again.";
   }
 }
+
 function toggleChatbot() {
-  document.getElementById("chatbot").classList.toggle("active");
+  const chatbot = document.getElementById("chatbot");
+  chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
 }
 
-function sendMessage() {
-  let input = document.getElementById("chatbot-input");
-  let message = input.value.trim();
-  if (message) {
-      let messagesContainer = document.getElementById("chatbot-messages");
-      messagesContainer.innerHTML += `<div>User: ${message}</div>`;
-      input.value = "";
+async function sendMessage() {
+  
+  const userInput = document.getElementById('userInput').value;
+  const messagesDiv = document.querySelector('.messages');
 
-      fetch("/chatbot", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: message })
-      })
-      .then(response => response.json())
-      .then(data => {
-          messagesContainer.innerHTML += `<div>Bot: ${data.response}</div>`;
-      });
-  }
+  if (!userInput) return;
+
+
+
+  // Display user message
+  messagesDiv.innerHTML += `<div>User: ${userInput}</div>`;
+
+  // Get response from chatbot API
+  const botResponse = await getChatbotResponse(userInput);
+  
+  // Display bot response
+  messagesDiv.innerHTML += `<div>Bot: ${botResponse}</div>`;
+  
+  document.getElementById('userInput').value = ''; // Clear input
+  messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
 }
+
+
 
 function fetchRecommendations() {
   fetch("/recommend")
@@ -182,3 +222,30 @@ function checkFraud() {
           : "✅ Transaction is safe.";
   });
 }
+// Handle Login & Signup
+document.getElementById("auth-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  const modalTitle = document.getElementById("modal-title").textContent;
+
+  if (modalTitle === "Sign Up") {
+      if (localStorage.getItem(email)) {
+          alert("User already exists!");
+      } else {
+          localStorage.setItem(email, password);
+          alert("Signup successful! Please log in.");
+          document.getElementById("modal-title").textContent = "Login";
+      }
+  } else {
+      const storedPassword = localStorage.getItem(email);
+      if (storedPassword && storedPassword === password) {
+          alert("Login successful!");
+          localStorage.setItem("loggedInUser", email);
+          document.getElementById("auth-modal").style.display = "none";
+      } else {
+          alert("Invalid email or password.");
+      }
+  }
+});
+

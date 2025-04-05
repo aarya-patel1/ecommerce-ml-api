@@ -1,5 +1,5 @@
 Product_ID,Name,Category,Price,Rating,Reviews,Stock_Availability
-P1000,Doll,Fashion,80.17,2,"Value for money, satisfied with the purchase.",Out of Stock
+P1000,Doll,Fashion,80.17,2,"Value for money, satisfied with the purchase.",Available
 P1001,Smartphone,Electronics,162.39,3.4,"Quality is okay, could be better.",Out of Stock
 P1002,T-Shirt,Fashion,184.34,4.5,"Value for money, satisfied with the purchase.",Available
 P1003,Board Game,Fashion,308.1,4.1,"Not as described, a bit disappointed.",Available

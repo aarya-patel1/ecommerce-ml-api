@@ -4,43 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrendAura - Ecommerce Website</title>
-  <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
+
+
+  <style>
+    .chatbot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: rgb(244, 90, 90);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .chatbot {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .chat-window {
+      height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    .messages {
+      margin-bottom: 10px;
+    }
+    .messages div {
+      margin: 5px 0;
+    }
+    .input-container {
+      display: flex;
+    }
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .input-container button {
+      padding: 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body>
-  <header>
+ <header>
     <div class="logo">TrendAura</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+      <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#footer">About</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
     </nav>
     <div class="right-actions">
       <div class="search-container">
         <input type="text" placeholder="Search..." />
-        <button class="search-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
-      </div>
+        <button class="search-btn">🔍</button>
+        </div>
+        <button id="join-us-btn" style="background-color: #ff6666; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Join us today</button>
       <div class="cart-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
+        <div id="cart-icon">🛒</div>
         <span class="cart-count">0</span>
       </div>
+      <!-- Login/Signup Modal -->
+      <div id="auth-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+          <div style="background: white; padding: 20px; border-radius: 10px; width: 300px; position: relative;">
+              <span id="close-modal" style="cursor: pointer; position: absolute; top: 5px; right: 10px; font-size: 20px;">&times;</span>
+              <h2 id="modal-title">Login</h2>
+              <form id="login-form" style="display: block;">
+                  <input type="email" id="auth-email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <input type="password" id="auth-password" placeholder="Password" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <button type="submit" style="width: 100%; background-color: #ff6666; color: white; border: none; padding: 10px; cursor: pointer;">Login</button>
+              </form>
+              <form id="signup-form" style="display: none;">
+                  <input type="text" id="signup-name" placeholder="Full Name" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <input type="email" id="signup-email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <input type="password" id="signup-password" placeholder="Password" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <input type="password" id="signup-confirm" placeholder="Confirm Password" required style="width: 100%; padding: 10px; margin: 5px 0;">
+                  <button type="submit" style="width: 100%; background-color: #ff6666; color: white; border: none; padding: 10px; cursor: pointer;">Sign Up</button>
+              </form>
+              <p id="toggle-auth">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+          </div>
+      </div>
+ 
+      
+
     </div>
+ 
   </header>
 
   <main>
-    <section class="hero">
+    <section id="Home" class="hero">
       <div class="hero-content">
         <h1>Elevate Your Style</h1>
         <h3>Chic. Bold. Timeless.</h3>
@@ -52,7 +124,7 @@
       </div>
     </section>
 
-    <section class="featured-products">
+    <section id="shop">
       <h2>Featured Products</h2>
       <div class="product-grid">
         <div class="product-card">
@@ -87,18 +159,11 @@
       <h2>Recommended for You</h2>
       <div class="product-grid">
         <div class="product-card">
-          <!-- <img src="https://i.pinimg.com/736x/e4/91/45/e49145a598331c44a3f3f690245bbacc.jpg" alt="Stylish Summer Dress">
-          <h3>Stylish Summer Dress</h3>
-          <p class="price">Rs.899</p>
+          <img src="https://i.pinimg.com/1200x/d5/a4/a0/d5a4a01dc6a4ee23235c5478b6cb9b81.jpg" alt="Stylish Summer Dress">
+          <h3>Long Dress</h3>
+          <p class="price">Rs.2899</p>
           <button class="add-to-cart">Add to cart</button>
-        </div> -->
-        <div class="product-grid">
-          <div class="product-card">
-            <img src="https://i.pinimg.com/1200x/d5/a4/a0/d5a4a01dc6a4ee23235c5478b6cb9b81.jpg" alt="Stylish Summer Dress">
-            <h3>Long Dress</h3>
-            <p class="price">Rs.2899</p>
-            <button class="add-to-cart">Add to cart</button>
-          </div>
+        </div>
         <div class="product-card">
           <img src="https://i.pinimg.com/736x/19/5f/6e/195f6eccd2cbd1bc77ef29651ef4557e.jpg" alt="Trendy High Neck Sweater">
           <h3>Trendy Claw clip</h3>
@@ -111,7 +176,8 @@
           <p class="price">Rs.999</p>
           <button class="add-to-cart">Add to Cart</button>
         </div>
-      </section>
+      </div>
+    </section>
 
     <section class="categories">
       <h2>Shop by Category</h2>
@@ -162,34 +228,37 @@
           <img src="https://i.pinimg.com/736x/72/44/19/724419a54c77544b1d4d9cf1a3ffe1d1.jpg" alt="Category 3">
           <h3>Watches & Wearables</h3>
         </div>
-        <div id="chatbot-icon" class="chatbot-icon" onclick="toggleChatbot()">💬</div>
-<div class="chatbot-window" id="chatbot">
-    <div class="chatbot-header">Chatbot</div>
-    <div class="chatbot-body" id="chatbot-messages"></div>
-    <div class="chatbot-footer">
-        <input type="text" id="chatbot-input" placeholder="Type a message...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-</div>
-
-<div class="container">
-
-
-  <!-- Fraud Detection should be below -->
-  <div class="fraud-detection">
-      <h2>Fraud Detection</h2>
-      <input type="text" placeholder="Enter transaction details">
-      <button class="fraud-btn">Check Fraud</button>
-  </div>
-</div>
-        
-
-        
       </div>
     </section>
+
+    <div class="container">
+    <div class="fraud-detection">
+        <h2>Fraud Detection</h2>
+        <input type="text" id="transaction-id" placeholder="Enter transaction ID">
+        <button class="fraud-btn" onclick="checkFraud()">Check Fraud</button>
+        <div id="fraud-result"></div>
+    </div>
+  <div class="chatbot-icon" onclick="toggleChatbot()">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chatbot Icon" />
+  </div>
+  
+  <div class="chatbot" id="chatbot" style="display: none;">
+      <h2>Chat with Us</h2>
+      <div class="chat-window">
+          <div class="messages">
+              <div>Bot: Hello! How can I assist you today?</div>
+          </div>
+          <div class="input-container">
+              <input type="text" id="userInput" placeholder="Type your message..." />
+              <button class="send-btn" onclick="sendMessage()">Send</button>
+          </div>
+      </div>
+  </div>
+  
+  </div>
   </main>
 
-  <footer>
+  <footer id="footer">
     <div class="footer-content">
       <div class="footer-section">
         <h3>About Us</h3>
@@ -217,6 +286,167 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+
+
+    <script>
+      const API_BASE_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5000' 
+        : '';
+
+      // Modal functionality
+      document.getElementById('join-us-btn').addEventListener('click', function() {
+        document.getElementById('auth-modal').style.display = 'flex';
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('modal-title').textContent = 'Login';
+        document.getElementById('toggle-auth').innerHTML = 'Don\'t have an account? <a href="#" id="show-signup">Sign Up</a>';
+      });
+
+      document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('auth-modal').style.display = 'none';
+      });
+
+      // Close modal when clicking outside
+      document.getElementById('auth-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+
+      // Toggle between login and signup
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'show-signup') {
+          e.preventDefault();
+          document.getElementById('login-form').style.display = 'none';
+          document.getElementById('signup-form').style.display = 'block';
+          document.getElementById('modal-title').textContent = 'Sign Up';
+          document.getElementById('toggle-auth').innerHTML = 'Already have an account? <a href="#" id="show-login">Login</a>';
+        }
+        if (e.target && e.target.id === 'show-login') {
+          e.preventDefault();
+          document.getElementById('login-form').style.display = 'block';
+          document.getElementById('signup-form').style.display = 'none';
+          document.getElementById('modal-title').textContent = 'Login';
+          document.getElementById('toggle-auth').innerHTML = 'Don\'t have an account? <a href="#" id="show-signup">Sign Up</a>';
+        }
+      });
+
+      // Form validation and submission
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('auth-email').value;
+        const password = document.getElementById('auth-password').value;
+        
+        if (!email || !password) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        // TODO: Add actual login API call
+        console.log('Login attempt with:', email, password);
+        alert('Login functionality will be implemented soon');
+      });
+
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const confirm = document.getElementById('signup-confirm').value;
+        
+        if (!name || !email || !password || !confirm) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        if (password !== confirm) {
+          alert('Passwords do not match');
+          return;
+        }
+        
+        // TODO: Add actual signup API call
+        console.log('Signup attempt with:', name, email, password);
+        alert('Account created successfully! (Demo only)');
+      });
+    </script>
+<script src="script_fixed.js"></script>
+
+
+    <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            if (chatbot.style.display === 'none' || !chatbot.style.display) {
+                chatbot.style.display = 'block';
+            } else {
+                chatbot.style.display = 'none';
+            }
+        }
+//         function sendMessage() {
+//     const userInput = document.getElementById('userInput').value;
+//     const messagesDiv = document.querySelector('.messages');
+
+//     if (!userInput) return;
+
+//     // Display user message
+//     messagesDiv.innerHTML += `<div>User: ${userInput}</div>`;
+
+//     // Send message to Flask backend
+//     fetch("/chat", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ message: userInput })
+//     })
+//     .then(res => res.json())
+//     .then(data => {
+//         messagesDiv.innerHTML += `<div>Bot: ${data.response}</div>`;
+//         document.getElementById('userInput').value = ''; // Clear input
+//         messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
+//     });
+// }
+
+        function checkFraud(transactionId) {
+            const resultDiv = document.getElementById('fraud-result');
+            const transactionData = {
+                transaction_id: transactionId
+            };
+
+            fetch('http://localhost:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(transactionData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultDiv.innerHTML = data.fraud ? 
+                    "Transaction declined due to fraud detection." : 
+                    "Transaction approved.";
+            })
+            .catch(error => {
+                resultDiv.innerHTML = 'Error processing transaction.';
+            });
+        }
+
+
+// function getProductDetails(query) {
+//     // Simulated product details based on user query
+//     if (query.toLowerCase().includes("Tshirt")) {
+//         return "Product:  Tshirt - Price: 700 - Features: long sleeves";
+//     } else if (query.toLowerCase().includes("phone")) {
+//         return "Product: Smartphone - Price: $699 - Features: 128GB Storage, 12MP Camera.";
+//     } else if (query.toLowerCase().includes("t-shirt")) {
+//         return "Product: T-Shirt - Price: 700 - Rating: 4.5 - Reviews: 'Value for money, satisfied with the purchase.'";
+//     } else if (query.toLowerCase().includes("makeup")) {
+//         return "Product: Makeup - Price: $50.00 - Rating: 4.0 - Reviews: 'Great quality and pigmentation.'"; // Placeholder
+//     } else if (query.toLowerCase().includes("watch")) {
+//         return "Product: Watch - Price: $150.00 - Rating: 4.2 - Reviews: 'Stylish and durable.'"; // Placeholder
+//     } else {
+//         return "Sorry, I don't have information on that product.";
+//     }
+// }
+
+
+  </script>
 </body>
 </html>
