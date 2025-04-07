@@ -9,13 +9,127 @@ window.addEventListener('scroll', function() {
 // Cart functionality
 const cartContainer = document.querySelector('.cart-container');
 const cartCount = document.querySelector('.cart-count');
-let cartItems = 0;
+let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
+// Update cart count display
+function updateCartCount() {
+  cartCount.textContent = cartItems.length;
+}
 
-cartContainer.addEventListener('click', () => {
-  cartItems++;
-  cartCount.textContent = cartItems;
+// Add to cart functionality
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', (e) => {
+    const productCard = e.target.closest('.product-card');
+    const product = {
+      name: productCard.querySelector('h3').textContent,
+      price: productCard.querySelector('.price').textContent,
+      image: productCard.querySelector('img').src
+    };
+    
+    cartItems.push(product);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    
+    // Show added to cart notification
+    const notification = document.getElementById('cart-notification');
+    notification.textContent = 'Item added to cart';
+    notification.style.display = 'block';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 2000);
+  });
 });
+
+// Cart modal functionality
+const cartModal = document.getElementById('cart-modal');
+const closeCart = document.getElementById('close-cart');
+const cartItemsContainer = document.getElementById('cart-items-container');
+
+// Open cart modal
+cartContainer.addEventListener('click', () => {
+  renderCartItems();
+  cartModal.style.display = 'flex';
+});
+
+// Close cart modal
+closeCart.addEventListener('click', () => {
+  cartModal.style.display = 'none';
+});
+
+// Close modal when clicking outside
+cartModal.addEventListener('click', (e) => {
+  if (e.target === cartModal) {
+    cartModal.style.display = 'none';
+  }
+});
+
+// Render cart items in modal
+function renderCartItems() {
+  if (cartItems.length === 0) {
+    cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+    return;
+  }
+
+  let html = '';
+  cartItems.forEach((item, index) => {
+    html += `
+      <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+        <div style="flex-grow: 1;">
+          <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
+          <p style="margin: 0; color: #ff6666;">${item.price}</p>
+        </div>
+        <button class="remove-item" data-index="${index}" style="background: none; border: none; color: #ff6666; cursor: pointer; font-size: 18px;">×</button>
+      </div>
+    `;
+  });
+  
+  // Add subtotal
+  const subtotal = cartItems.reduce((sum, item) => {
+    return sum + parseInt(item.price.replace(/[^0-9]/g, ''));
+  }, 0);
+  
+  html += `
+    <div style="margin-top: 20px; text-align: right;">
+      <h3 style="margin: 0;">Subtotal: Rs.${subtotal}</h3>
+    </div>
+  `;
+  
+  cartItemsContainer.innerHTML = html;
+
+  // Add event listeners to remove buttons
+  document.querySelectorAll('.remove-item').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = e.target.dataset.index;
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      updateCartCount();
+      renderCartItems();
+      
+      // Show removal notification
+      const notification = document.getElementById('cart-notification');
+      notification.textContent = 'Item removed from cart';
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 2000);
+    });
+  });
+}
+
+// Checkout button functionality
+document.getElementById('checkout-btn').addEventListener('click', () => {
+  if (cartItems.length === 0) {
+    alert('Your cart is empty');
+    return;
+  }
+  
+  alert('Proceeding to checkout!');
+  // In a real implementation, this would redirect to checkout page
+});
+
+// Initialize cart count
+updateCartCount();
 document.getElementById("join-us-btn").addEventListener("click", function() {
   document.getElementById("auth-modal").style.display = "flex";
   document.getElementById("modal-title").textContent = "Login";
