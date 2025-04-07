@@ -232,12 +232,12 @@
     </section>
 
     <div class="container">
-    <div class="fraud-detection">
-        <h2>Fraud Detection</h2>
-        <input type="text" id="transaction-id" placeholder="Enter transaction ID">
-        <button class="fraud-btn" onclick="checkFraud()">Check Fraud</button>
-        <div id="fraud-result"></div>
-    </div>
+      <div class="fraud-check">
+        <h2>Check Transaction Fraud</h2>
+        <input type="text" id="txnInput" placeholder="Enter Transaction ID" />
+        <button onclick="checkFraud()">Check</button>
+        <p id="fraudResult"></p>
+      </div>
   <div class="chatbot-icon" onclick="toggleChatbot()">
       <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chatbot Icon" />
   </div>
@@ -285,8 +285,9 @@
       &copy; 2025 TrendAura. All rights reserved.
     </div>
   </footer>
-
-
+ 
+  
+  <script src="script.js"></script>
 
     <script>
       const API_BASE_URL = window.location.hostname === 'localhost' 
@@ -404,47 +405,32 @@
 //     });
 // }
 
-        function checkFraud(transactionId) {
-            const resultDiv = document.getElementById('fraud-result');
-            const transactionData = {
-                transaction_id: transactionId
-            };
+  //      function checkFraud(transactionId) {
+       //     const resultDiv = document.getElementById('fraud-result');
+        //    const transactionData = {
+          //      transaction_id: transactionId
+            //};
+//
+  //          fetch('http://localhost:5000/predict', {
+    //            method: 'POST',
+      //          headers: {
+        //            'Content-Type': 'application/json'
+          //      },
+            //    body: JSON.stringify(transactionData)
+            //})
+            //.then(response => response.json())
+            //.then(data => {
+              //  resultDiv.innerHTML = data.fraud ? 
+                //    "Transaction declined due to fraud detection." : 
+                  //  "Transaction approved.";
+            //})
+            //.catch(error => {
+              //  resultDiv.innerHTML = 'Error processing transaction.';
+           // });
+       // }    
 
-            fetch('http://localhost:5000/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(transactionData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                resultDiv.innerHTML = data.fraud ? 
-                    "Transaction declined due to fraud detection." : 
-                    "Transaction approved.";
-            })
-            .catch(error => {
-                resultDiv.innerHTML = 'Error processing transaction.';
-            });
-        }
-
-
-// function getProductDetails(query) {
-//     // Simulated product details based on user query
-//     if (query.toLowerCase().includes("Tshirt")) {
-//         return "Product:  Tshirt - Price: 700 - Features: long sleeves";
-//     } else if (query.toLowerCase().includes("phone")) {
-//         return "Product: Smartphone - Price: $699 - Features: 128GB Storage, 12MP Camera.";
-//     } else if (query.toLowerCase().includes("t-shirt")) {
-//         return "Product: T-Shirt - Price: 700 - Rating: 4.5 - Reviews: 'Value for money, satisfied with the purchase.'";
-//     } else if (query.toLowerCase().includes("makeup")) {
-//         return "Product: Makeup - Price: $50.00 - Rating: 4.0 - Reviews: 'Great quality and pigmentation.'"; // Placeholder
-//     } else if (query.toLowerCase().includes("watch")) {
-//         return "Product: Watch - Price: $150.00 - Rating: 4.2 - Reviews: 'Stylish and durable.'"; // Placeholder
-//     } else {
-//         return "Sorry, I don't have information on that product.";
-//     }
-// }
+       
+      
 
 
   </script>

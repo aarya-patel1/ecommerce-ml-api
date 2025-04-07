@@ -196,6 +196,38 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('index'))
 
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import pandas as pd
+
+app = Flask(__name__)
+CORS(app)
+
+# Load CSV
+try:
+    df = pd.read_csv('fraud_data.csv')
+    df['transaction_id'] = df['transaction_id'].astype(str).str.upper()
+    print("✔ fraud_data.csv loaded")
+except Exception as e:
+    print("❌ Error loading fraud_data.csv:", e)
+    df = pd.DataFrame(columns=["transaction_id", "is_fraud"])
+
+@app.route("/check_transaction", methods=["POST"])
+def check_transaction():
+    data = request.get_json()
+    txn_id = data.get("transaction_id", "").strip().upper()
+
+    match = df[df["transaction_id"] == txn_id]
+
+    if match.empty:
+        return jsonify({"error": "Transaction not found"}), 404
+
+    is_fraud = int(match.iloc[0]["is_fraud"]) == 1
+    return jsonify({
+        "transaction_id": txn_id,
+        "is_fraud": is_fraud
+    })
+
 
 if __name__ == "__main__":
     app.run(debug=True)

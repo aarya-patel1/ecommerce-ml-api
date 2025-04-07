@@ -608,14 +608,51 @@ button:hover {
   background-color: #e74c3c;
 }
 
-/* Fraud detection section */
-#fraud-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
+
+/* Fraud Detection Section */
+.fraud-check {
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+  text-align: center;
 }
+
+.fraud-check h2 {
+  margin-bottom: 1rem;
+}
+
+.fraud-check input {
+  width: 80%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.fraud-check button {
+  padding: 0.5rem 1rem;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fraud-check button:hover {
+  background-color: #e74c3c;
+
+}
+
+.fraud-check p {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 
 /* Recommendations section styles */
 .recommendations {

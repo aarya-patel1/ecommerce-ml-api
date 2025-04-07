@@ -197,31 +197,71 @@ async function sendMessage() {
   messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
 }
 
+//fraud detection
+// Existing JS code here...
 
+async function checkFraud() {
+  const txnId = document.getElementById("txnInput").value.trim();
+  const resultBox = document.getElementById("fraudResult");
 
-function fetchRecommendations() {
-  fetch("/recommend")
-  .then(response => response.json())
-  .then(data => {
-      let recommendationsDiv = document.getElementById("recommendations");
-      recommendationsDiv.innerHTML = `<h3>Recommended:</h3><ul>${data.recommendations.map(item => `<li>${item}</li>`).join('')}</ul>`;
-  });
-}
-function checkFraud() {
-  let transactionDetails = document.getElementById("transaction-details").value;
+  if (!txnId) {
+    resultBox.textContent = "Please enter a transaction ID.";
+    resultBox.style.color = "red";
+    return;
+  }
 
-  fetch("/fraud-check", {
+  try {
+    const res = await fetch("http://127.0.0.1:5000/check_transaction", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ transaction: transactionDetails })
-  })
-  .then(response => response.json())
-  .then(data => {
-      document.getElementById("fraud-result").innerText = data.fraud 
-          ? "🚨 Fraud detected!" 
-          : "✅ Transaction is safe.";
-  });
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ transaction_id: txnId }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      resultBox.textContent = data.is_fraud
+        ? "\u26A0\uFE0F This transaction is fraudulent."
+        : "\u2705 This transaction is safe.";
+      resultBox.style.color = data.is_fraud ? "red" : "green";
+    } else {
+      resultBox.textContent = data.error || "Error checking transaction.";
+      resultBox.style.color = "red";
+    }
+  } catch (err) {
+    resultBox.textContent = "Server error.";
+    resultBox.style.color = "red";
+    console.error(err);
+  }
 }
+
+
+
+//function fetchRecommendations() {
+  //fetch("/recommend")
+  //.then(response => response.json())
+  //.then(data => {
+    //  let recommendationsDiv = document.getElementById("recommendations");
+      //recommendationsDiv.innerHTML = `<h3>Recommended:</h3><ul>${data.recommendations.map(item => `<li>${item}</li>`).join('')}</ul>`;
+  //});
+//}
+//function checkFraud() {
+  //let transactionDetails = document.getElementById("transaction-details").value;
+//
+  //fetch("/fraud-check", {
+    //  method: "POST",
+      //headers: { "Content-Type": "application/json" },
+      //body: JSON.stringify({ transaction: transactionDetails })
+  //})
+  //.then(response => response.json())
+  //.then(data => {
+    //  document.getElementById("fraud-result").innerText = data.fraud 
+      //    ? "🚨 Fraud detected!" 
+        //  : "✅ Transaction is safe.";
+  //});
+//}
 // Handle Login & Signup
 document.getElementById("auth-form").addEventListener("submit", function (event) {
   event.preventDefault();
