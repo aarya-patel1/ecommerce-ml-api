@@ -30,6 +30,8 @@ This project is a **mini AI-powered online store** that integrates multiple Mach
 - **Backend:** Flask API (`app.py`)
 - **Database:** MySQL (example schema in `ecommerce_users.sql`)
 
+### link
+https://aarya-patel1.github.io/ecommerce-ml-api/
 ---
 
 ## 📂 Project Structure
